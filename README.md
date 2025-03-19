@@ -18,4 +18,4 @@ I learned a lot of what I know for programming and robotics from the following l
 * [Brackeys](https://www.youtube.com/@Brackeys)
 * [International Robotics Academy](https://www.ira.edu.jo/)
 
-A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif)
+A meme that captures how I currently feel about my university studies is ![]([https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif](https://media1.tenor.com/m/V-MPVZfSpc0AAAAd/baby-yoda-the-mandalorian.gif))
