@@ -14,7 +14,7 @@
 3. Robotics
 
 I learned a lot of what I know for programming and robotics from the following links:
-* [W3Schools]([https://www.auckland.ac.nz/](https://www.w3schools.com/))
+* [W3Schools](https://www.w3schools.com/)
 * [Brackeys](https://www.youtube.com/@Brackeys)
 * [International Robotics Academy](https://www.ira.edu.jo/)
 
