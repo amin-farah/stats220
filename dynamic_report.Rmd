@@ -1,0 +1,118 @@
+
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+library(tidyverse)
+```
+
+```{css}
+```{css}
+body {
+  font-family: sans-serif;
+  background-color: #F4F5F9;
+  color: #333;
+}
+
+h2, h3, p {
+  background: linear-gradient(90deg, #6a0dad, #00b4d8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientMove 4s ease-in-out infinite alternate;
+  background-size: 200% auto;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+}
+
+img:hover {
+  transform: scale(150%);
+  transition: 0.3s;
+  border: 2px solid red;
+  cursor: zoom-in;
+  z-index: 10;
+}
+```
+
+```
+
+## Graffiti Related Observations in Auckland
+
+This report explores graffiti data collected by me during the end of March. It focuses on location, political expression, and artistic quality.
+
+```{r}
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vR3wRSXmfj4ZecJsF6nPZfs6jE0x4MH024DLqj8t5v-7F26H-cvmeXkn3PojNJbP5yK2tTs3StNelPe/pub?output=csv")
+
+latest_data <- rename(logged_data,
+  ObservationTime = `When did you observe the graffiti?`,
+  ObservationLocation = `Where did you observe the graffiti?`,
+  ColorCount = `How many colors were used?`,
+  PoliticalNature = `Was the graffiti political in nature?`,
+  ArtisticQuality = `How would you describe the artistic quality of the graffiti on a scale from 1 to 10?`,
+  Condition = `Describe the condition of the graffiti`
+)
+```
+
+Below we calculate two summary values from the dataframe: the lowest number of colors used in a graffiti piece, and the highest rating for artistic quality.
+
+```{r}
+min_color <- min(latest_data$ColorCount, na.rm = TRUE)
+max_quality <- max(latest_data$ArtisticQuality, na.rm = TRUE)
+```
+
+The most simple graffiti piece used only `r min_color` colors, while the most artistically rated one scored `r max_quality` out of 10.
+
+---
+
+Now we look at how often graffiti was reported across different Auckland locations.
+
+```{r}
+ggplot(data = latest_data) +
+  geom_bar(aes(x = ObservationLocation), fill = "#2b8cbe") +
+  labs(
+    title = "Graffiti Observations by Location",
+    subtitle = "Frequency of graffiti sightings across different Auckland areas",
+    x = "Location",
+    y = "Number of Reports",
+    caption = "Source: STATS220 Google Form Data"
+  )
+```
+
+This bar chart shows which areas had the most frequent graffiti sightings, according to student observations.
+
+---
+
+Next, we examine whether the graffiti was reported as political in nature.
+
+```{r}
+ggplot(data = latest_data) +
+  geom_bar(aes(x = PoliticalNature), fill = "#d95f0e") +
+  labs(
+    title = "Political Content in Graffiti",
+    subtitle = "Breakdown of whether graffiti had political themes",
+    x = "Political in Nature",
+    y = "Number of Observations",
+    caption = "STATS220 Google Form Data"
+  )
+```
+
+As shown above, most graffiti pieces were non-political, though some did express political ideas.
+
+---
+
+![](https://c.tenor.com/NitBhbe79G8AAAAd/tenor.gif)
